@@ -3,7 +3,7 @@
 This document outlines the development phases for the Automated Phishing Triage module, a core component of the overarching Autonomous AI SOC Analyst architecture.
 
 ## 📍 Phase 1: Environment Setup & Basic Ingestion
-* [ ] Initialize project structure and virtual environment.
+* [x] Initialize project structure and virtual environment.
 * [ ] Write initial Python script to securely open, read, and parse raw `.eml` (email) files.
 * [ ] Extract basic metadata (Sender, Recipient, Subject, Date).
 

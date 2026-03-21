@@ -4,17 +4,17 @@ This document outlines the development phases for the Automated Phishing Triage 
 
 ## 📍 Phase 1: Environment Setup & Basic Ingestion
 * [x] Initialize project structure and virtual environment.
-* [ ] Write initial Python script to securely open, read, and parse raw `.eml` (email) files.
-* [ ] Extract basic metadata (Sender, Recipient, Subject, Date).
+* [x] Write initial Python script to securely open, read, and parse raw `.eml` (email) files.
+* [x] Extract basic metadata (Sender, Recipient, Subject, Date).
 
 ## 📍 Phase 2: Parsing & IOC Extraction
-* [ ] Implement regex/parsing logic to extract URLs from the email body.
-* [ ] Implement logic to extract IP addresses from email headers.
-* [ ] Safely detach and calculate SHA-256 hashes of file attachments.
+* [x] Implement regex/parsing logic to extract URLs from the email body.
+* [x] Implement logic to extract IP addresses from email headers.
+* [x] Safely detach and calculate SHA-256 hashes of file attachments.
 
 ## 📍 Phase 3: Threat Intelligence Enrichment
-* [ ] Integrate the **VirusTotal API**.
-* [ ] Automate reputation checks for extracted URLs, IPs, and file hashes.
+* [x] Integrate the **VirusTotal API**.
+* [x] Automate reputation checks for extracted URLs, IPs, and file hashes.
 * [ ] Flag IOCs that cross a specific malicious threshold.
 
 ## 📍 Phase 4: AI Context Analysis

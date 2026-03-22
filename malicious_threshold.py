@@ -10,7 +10,7 @@ def flag_vt_iocs(vt_results, malicious_threshold=2):
     Returns:
         list: A list of IOCs that are flagged as malicious based on the specified threshold.
     """
-    flaged_iocs = []
+    flagged_iocs = []
 
     for ioc_value, vt_data in vt_results.items():
         try:
@@ -37,7 +37,7 @@ def flag_vt_iocs(vt_results, malicious_threshold=2):
 
     return flagged_iocs
 # Simulating the raw JSON responses gathered in Phase 3.2 
-vt_api_responsee = {
+vt_api_responses = {
     "103.15.22.1":{
         "data": {"attributes" :{"type": "ip_address", "last_analysis_stats": {"malicious": 5, "suspicious": 1, "harmless": 60}}}
     },

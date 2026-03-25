@@ -95,6 +95,22 @@ class IntelEnricher:
         """Neutralizes a URL or IP to prevent accidental clicks in the final report."""
         return ioc.replace("http", "hxxp").replace(".", "[.]")
 
+    def check_vt_threshold(vt_results, threshold=5):
+        """
+        Analyzes VT results and flags IOC's above the malicious threshold.
+        """
+
+        malicious_count = vt_results.get('data', {}).get('attributes', {}).get('last_analysis_stats', {}).get('malicious', 0)
+
+        if malicious_count >= threshold:
+            return{
+                "is_flagged" : True,
+                "severity" : "CRITICAL" if malicious_count > 10 else "HIGH",
+                "count" : malicious_count,
+                "message": f"IOC flagged: {malicious_count} engines detected this as malicious."
+            }
+        
+        return {"is_flagged": False, "count": malicious_count, "message": f"IOC is clean: {malicious_count} engines detected this as malicious."}
 # Test logic to ensure it runs correctly
 if __name__ == "__main__":
     enricher = IntelEnricher()

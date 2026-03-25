@@ -15,7 +15,7 @@ This document outlines the development phases for the Automated Phishing Triage 
 ## 📍 Phase 3: Threat Intelligence Enrichment
 * [x] Integrate the **VirusTotal API**.
 * [x] Automate reputation checks for extracted URLs, IPs, and file hashes.
-* [ ] Flag IOCs that cross a specific malicious threshold.
+* [x] Flag IOCs that cross a specific malicious threshold.
 
 ## 📍 Phase 4: Campaign Correlation & Blast Radius (Detection & Analysis)
 * [ ] Build a local `SQLite` or in-memory database to store parsed email IOCs.

@@ -108,7 +108,7 @@ class IntelEnricher:
                 "severity" : "CRITICAL" if malicious_count > 10 else "HIGH",
                 "count" : malicious_count,
                 "message": f"IOC flagged: {malicious_count} engines detected this as malicious."
-            }
+            } 
         
         return {"is_flagged": False, "count": malicious_count, "message": f"IOC is clean: {malicious_count} engines detected this as malicious."}
 # Test logic to ensure it runs correctly

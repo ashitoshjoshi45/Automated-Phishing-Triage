@@ -17,12 +17,14 @@ This document outlines the development phases for the Automated Phishing Triage 
 * [x] Automate reputation checks for extracted URLs, IPs, and file hashes.
 * [x] Flag IOCs that cross a specific malicious threshold.
 
-## 📍 Phase 4: Campaign Correlation & Blast Radius (Detection & Analysis)
-* [ ] Build a local `SQLite` or in-memory database to store parsed email IOCs.
-* [ ] Develop a `correlation_engine.py` to cross-reference IPs, senders, and hashes across multiple `.eml` files.
-* [ ] Generate a "Blast Radius" report identifying Patient Zero and the full scope of the phishing campaign.
+#📍 Phase 4: Internal Threat Intel & Campaign Correlation
+[x] Implement real-time honeypot log ingestion to extract local IOCs.
+[x] Develop basic cross-referencing logic to match .eml IOCs against active honeypot threats.
+[ ] Upgrade the in-memory honeypot IOC set to a persistent local SQLite database.
+[ ] Develop correlation_engine.py to cross-reference IPs, senders, and hashes across multiple .eml files.
+[ ] Generate a "Blast Radius" report identifying Patient Zero and the full scope of the internal phishing campaign.
 
-## 📍 Phase 5: Reporting & IR Handoff
-* [ ] Aggregate findings from the Parser, Enricher, and Correlation Engine.
-* [ ] Generate a structured text/JSON report formatted for immediate ingestion by Tier 2 analysts or SIEMs.
-* [ ] Map outputs directly to the "Detection and Analysis" phase of the NIST Incident Response Lifecycle.
+📍 Phase 5: SIEM Integration & IR Handoff
+[ ] Aggregate findings from the Parser, Enricher, and Correlation Engine.
+[ ] Generate a structured JSON report formatted for automated ingestion into SIEMs (like Splunk or Wazuh).
+[ ] Map outputs directly to the "Detection and Analysis" phase of the NIST Incident Response Lifecycle.

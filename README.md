@@ -20,3 +20,5 @@ This component acts as the "Eyes" of the Autonomous SOC Analyst. It securely par
 * **Artifact Extraction:** * **URLs:** Automatically identifies unique links using Regex.
   * **Attachments:** Detects and flags file payloads for downstream analysis.
 * **Deduplication:** Integrated set-logic to ensure report clarity by removing duplicate indicators.
+
+## Update: March 30, 2026 - Working on IOC enrichment logic.

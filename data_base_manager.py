@@ -35,7 +35,7 @@ def insert_ioc(indicator):
         ''', (indicator, timestamp))
         conn.commit()
         #Return TRUE is successfully added
-        result = TRUE
+        result = True
     
     except sqlite3.IntegrityError:
         # triggers if the indicator exists in preior due to the UNIQUE constrains
@@ -45,11 +45,22 @@ def insert_ioc(indicator):
     return result
 
 def check_email_against_db(email_iocs):
-    """Checks a list of etractedd email IOC's against the persistent database"""
+    """Checks a list of etractedd email IOC's against the persistent database in a single query."""
+    if not email_iocs:
+        return[]
+    
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
-    confirmed_threats = []
+    #create placeholder (? , ? , ?) for the number of IOC's provided
+    placeholders = ', '.join(['?'] * len(email_iocs))
+    query = f'SELECT indicator_value FROM honeypot_iocs WHERE indicator_value IN ({placeholders})'
+
+
+    try:
+        cursor.execute(query, email_iocs)
+        #fetchall() returns a list of tuples like[('1.1.1.1',), ('malicious.com',)]
+        results = cursor.fetchall()
 
     for ioc in email_iocs:
         cursor.execute('SELECT indicator_value FROM honeypot_iocs WHERE indicator_value = ?', (ioc,))

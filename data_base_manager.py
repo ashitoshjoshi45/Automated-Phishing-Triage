@@ -45,32 +45,30 @@ def insert_ioc(indicator):
     return result
 
 def check_email_against_db(email_iocs):
-    """Checks a list of etractedd email IOC's against the persistent database in a single query."""
+    """Checks a list of extracted email IOCs against the database in a single query."""
     if not email_iocs:
-        return[]
-    
+        return []
+
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
-    #create placeholder (? , ? , ?) for the number of IOC's provided
+    # Create placeholders (?, ?, ?) for the number of IOCs provided
     placeholders = ', '.join(['?'] * len(email_iocs))
     query = f'SELECT indicator_value FROM honeypot_iocs WHERE indicator_value IN ({placeholders})'
 
-
     try:
         cursor.execute(query, email_iocs)
-        #fetchall() returns a list of tuples like[('1.1.1.1',), ('malicious.com',)]
+        # fetchall() returns a list of tuples like [('1.1.1.1',), ('malicious.com',)]
         results = cursor.fetchall()
+        
+        # Flatten the list of tuples into a simple list of strings
+        confirmed_threats = [row[0] for row in results]
+        
+    except sqlite3.Error as e:
+        print(f"[-] Database error: {e}")
+        confirmed_threats = []
+    finally:
+        conn.close()
 
-    for ioc in email_iocs:
-        cursor.execute('SELECT indicator_value FROM honeypot_iocs WHERE indicator_value = ?', (ioc,))
-        match = cursor.fetchone()
-        if match:
-            #match[0] contains the actual string from the database
-            confirmed_threats.append(match[0])
-
-    conn.close()
     return confirmed_threats
 
-# this is to ensure the DB exists
-initialize_database() 

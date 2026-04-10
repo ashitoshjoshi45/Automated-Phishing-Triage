@@ -3,6 +3,9 @@ import json
 from datetime import datetime
 
 
+# HIGH-RISK departments or keywords
+VIP_KEYWORDS = ['admin' , 'ceo' , 'cfo' , 'hr' , 'finance' , 'it-support']
+
 # FUNCTION generate_blast_radius_report():
 def generate_blast_radius_report(db_path="phishing_triage.db"):
 #     1. CONNECT to the local SQLite database.

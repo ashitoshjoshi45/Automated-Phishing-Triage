@@ -1,4 +1,6 @@
 import os
+import json
+from datetime import datetime 
 # I used oletools as it's th eindustry standard for soc analysis
 from oletools.olevba import VBA_Parser
 
@@ -13,8 +15,40 @@ def analyze_attachment(file_path):
     # Step 1: parse the file for OLE streams.
     try:
         parser = VBA_Parser(file_path)
+        filename = os.path.basename(file_path)
+        
         if parser.detect_macros():
             print(f"[+] Macros detected in {os.path.basename(file_path)}")
+            results = parser.analyze_macros()
+
+            findings = []
+            if results:
+                for kw_type, keword, description in results:
+                    findings.append({
+                        "type": kw_type,
+                        "keyword": keyword,
+                        "description": description
+                    })
+
+            # structure data and export to JSON 
+            report_data = {
+                "file_name": filename,
+                "analysis_time": datetime.now().strformat("%Y-%m-%d %H:%M:%S"),
+                "macros_found" : True,
+                "suspicious_counts": len(findings),
+                "findings": findings
+            }
+
+            if export_json:
+                json_file = f"reports/{filename}_analysis.json"
+                os.makedirs("reports", exist_ok=True)
+                with open(son_file, 'w') as jf:
+                    json.dump(report_data, jf, indent = 4)
+                print(f"[#] Analysis report saved to {json_file}")
+
+            parser.close()
+            return report_data
+
     # Step 2: Detect if VBA Macros are embedded.
         else:
             print(f"[-] No macros found in {os.path.basename(file_path)}")

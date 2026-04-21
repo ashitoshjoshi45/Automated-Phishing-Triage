@@ -23,8 +23,9 @@ def generate_blast_radius_report(db_path="phishing_triage.db"):
             print("[*] No recent malicious emails found in the database.")
             return
 
-        # 3. IDENTIRY "Patient Zero"
+        # 3. IDENTIFY "Patient Zero"
         # Since we sorted by timestamp ASC, The first record id Patient Zero
+        # Accessing by inde because fetchall() returns a list of tuples
         p_zero = malicious_emails[0]
         parient_zero = {
               "email": p_zero_record['recipient'],
@@ -34,11 +35,18 @@ def generate_blast_radius_report(db_path="phishing_triage.db"):
 
         # 4. calculate "Full Scope"
         affected_users = set()
+        vip_hits = []
         ioc_spread = {}
 
         for event in malicious_events:
-                affected_users.add(event['recipient'])
+                recipient = event[0]  # Assuming recipients are in the first column
+                affected_users.add(recipient)
 
+                #UPDATE ON 21-04-2026 Check for VIP keywords in the recipient's email address
+                if any(key in recipient.lower() for key in VIP_KEYWORDS):
+                      if recipient not in vip_hits:
+                            vip_hits.append(recipient)
+                
                 # Track IOC spread
                 ioc = event['ioc_value']
                 if ioc not in ioc_spread:

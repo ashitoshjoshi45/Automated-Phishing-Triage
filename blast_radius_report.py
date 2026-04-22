@@ -77,3 +77,19 @@ def generate_blast_radius_report(db_path="phishing_triage.db"):
 
 if __name__ == "__main__":
     generate_blast_radius_report()
+
+# Part of Section 6 & 7 
+timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+report_filename = f"blast_radius_report_{timestamp_str}.json"
+
+# 6. O/P
+# save JSON report for AI SOC Analyst to review
+try:
+        with open(report_filename, 'w') as f:
+                json.dump(report, f, indent=4)
+        print(f"[+] Success: Blast Radius report saved as {report_filename}")
+except Exception as e:
+        print(f"[-] Error saving report: {e}")
+
+# 7. CLOSE database connection
+conn.close()

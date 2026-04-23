@@ -27,7 +27,7 @@ def generate_blast_radius_report(db_path="phishing_triage.db"):
         # Since we sorted by timestamp ASC, The first record id Patient Zero
         # Accessing by inde because fetchall() returns a list of tuples
         p_zero = malicious_emails[0]
-        parient_zero = {
+        patient_zero = {
               "email": p_zero_record['recipient'],
               "timestamp": p_zero_record['timestamp'],
               "initial_vector": p_zero_record['iocs_value']

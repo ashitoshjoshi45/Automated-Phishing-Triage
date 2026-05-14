@@ -31,3 +31,29 @@
             # The connection is closed automatically by the 'with' block
             # or explcitily here to ensure no locks remain on indicators.db
             # CLOSE connectino if still open
+
+
+#-----ADDED ON 14-05-2026---------#
+#STEP 3 : Integrate Indicator Extraction into the Triage Flow
+#FUNCTION extract_and_store_iocs(email_content):
+    # Initialize the extraction tools
+    # CALL ioc_extractor.py to identify URLs, IPs, and suspicious domains
+ #   found_iocs = EXTRACT_IOCS(email_content)
+    
+  #  TRY:
+        # Utilize the connection manager defined in Step 1
+   #     WITH get_db_connection() AS connection:
+    #        FOR each ioc IN found_iocs:
+                # Assign threat metadata
+     #           ioc_type = ioc.type
+      #          ioc_value = ioc.value
+                
+                # Execute storage query
+       #         EXECUTE "INSERT INTO ioc_logs (ioc_type, ioc_value, discovery_time) 
+        #                 VALUES (?, ?, ?)" WITH (ioc_type, ioc_value, CURRENT_TIMESTAMP)
+            
+            # Transaction is committed automatically
+            
+#    EXCEPT Error AS e:
+#        LOG "IOC Storage Failure: {e}"
+        # Trigger the alert system for database integrity issues

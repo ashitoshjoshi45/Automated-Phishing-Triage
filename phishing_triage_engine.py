@@ -3,6 +3,12 @@ import sqlite3
 # [FIXED 2026-04-23] Import added to resolve NameError when parsing .eml files
 from email import message_from_file 
 
+# [ADDRESSED ON 2026-04-27] Configure error logging to a local file
+logging.basicConfig(
+    filename='triage_errors.log',
+    level=logging.ERROR,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 def setup_database():
     """Creates the database and schema for storing phishing telemetry."""
     conn = sqlite3.connect("phishing_triage.db")

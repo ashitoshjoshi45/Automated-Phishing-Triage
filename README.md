@@ -22,3 +22,23 @@ This component acts as the "Eyes" of the Autonomous SOC Analyst. It securely par
 * **Deduplication:** Integrated set-logic to ensure report clarity by removing duplicate indicators.
 
 ## Update: March 30, 2026 - Working on IOC enrichment logic.
+
+# Automated Phishing Triage & IOC Extractor
+
+A tactical security operations utility designed to parse raw email (`.eml`) files, extract critical Indicators of Compromise (IOCs), and store campaign artifacts for fast incident response triage.
+
+## 📌 Project Overview
+Manual phishing analysis slows down defensive operations. This tool automates the tedious parts of email investigation by stripping down raw email headers, body content, and attachment metadata, turning unstructured alert data into structured intelligence.
+
+## 🎯 Core Objectives
+* **Header & Body Parsing:** Automatically isolate sender transport paths, Return-Path discrepancies, and hidden links.
+* **IOC Isolation:** Extract target URLs, source IP addresses, sender domains, and attachment file hashes.
+* **Campaign Correlation:** Store extracted artifacts in a local SQLite backend to map patterns across multiple phishing waves.
+
+## 🛠️ Planned Project Sections
+* [ ] Technical Architecture & Data Flow
+* [ ] Prerequisites & Local Setup Guide
+* [ ] CLI Usage & Input/Output Formats
+* [ ] SQLite Database Schema & Campaign Queries
+* [ ] Sample EML Detection Datasets
+* [ ] Future Integrations Roadmap

@@ -28,3 +28,4 @@ This document outlines the development phases for the Automated Phishing Triage 
 [ ] Aggregate findings from the Parser, Enricher, and Correlation Engine.
 [ ] Generate a structured JSON report formatted for automated ingestion into SIEMs (like Splunk or Wazuh).
 [ ] Map outputs directly to the "Detection and Analysis" phase of the NIST Incident Response Lifecycle.
+

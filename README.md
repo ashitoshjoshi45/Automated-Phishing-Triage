@@ -42,3 +42,4 @@ Manual phishing analysis slows down defensive operations. This tool automates th
 * [ ] SQLite Database Schema & Campaign Queries
 * [ ] Sample EML Detection Datasets
 * [ ] Future Integrations Roadmap
+

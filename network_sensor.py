@@ -1,26 +1,22 @@
-# // title: network sensor packet inspection
-# class solution:
 class solution:
-#     def inspect_packets(packet_stream, watchlist_ips):
-    def inspect_packets(self, packet_stream , watchlist_ips):
-#         // Initialize an empty list for flagged packets
-# added on 02-08-2026
-        flagged_packets = []
+    def triage_phishing_ips(self, email_metadata, watchlist_ips):
+        # Initialize an empty list for flagged emails
+        # added on 04-08-2026
+        flagged_emails = []
 
-        #convert list to set for 0(1) time complexity
+        # convert list to set for O(1) time complexity lookup
+        watchlist_set = set(watchlist_ips)
 
-#       // OUTER LOOP: For each packet in packet_stream
-        for packet in packet_stream:
-#       // Extract source_ip and dest_ip from the packet
-            source_ip = packet.get('source_ip')
-            dest_ip = packet.get('dest_ip')           
-#  // INNER LOOP: For each malicious_ip in watchlist_ips
-#                 // If source_ip equals malicious_ip or dest_ip equals malicious    
-#                // Add the packet to the flagged packets list
-                    if source_ip == malicious_ip or dest_ip == malicious_ip:
-                        flagged_packets.append(packet)
-#  // Break out of the inner loop to avoid duplicate flags
-                        break        
-# // Return the flagged packets list
-# end function
-                return flagged_packets
+        # OUTER LOOP: For each parsed email artifact in email_metadata
+        for email in email_metadata:
+            # Extract sender_ip and reply_to_ip from the email artifact
+            sender_ip = email.get('sender_ip')
+            reply_to_ip = email.get('reply_to_ip')
+            
+            # Optimized O(1) lookup against the watchlist set
+            if sender_ip in watchlist_set or reply_to_ip in watchlist_set:
+                # Add the email to the flagged list
+                flagged_emails.append(email)
+                
+        # Return the flagged emails list
+        return flagged_emails

@@ -13,3 +13,41 @@
   # use regular expressions to find all URLs in the extracted body
   # return the dictionary of extracted artifacts
 # end function
+
+# added on 16-08-2026
+
+# function triage_phishing_artifacts(artifacts)
+#   initialize risk_score to 0
+#   initialize analysis_report dictionary to store findings and final action
+#
+#   # 1. Analyze Sender Domain
+#   extract domain from artifacts["sender"]
+#   query domain_reputation_api(domain) # e.g., check age, SPF/DKIM records, threat intel
+#   if domain is newly registered OR has known bad reputation:
+#       increase risk_score by 30
+#       append "Suspicious Sender Domain" to analysis_report["findings"]
+#
+#   # 2. Analyze Extracted URLs
+#   for each url in artifacts["urls"]:
+#       query threat_intel_api(url) # e.g., VirusTotal, URLScan.io
+#       if api_response flags url as malicious or phishing:
+#           increase risk_score by 50
+#           append "Malicious URL Detected" to analysis_report["findings"]
+#           break loop # early exit if we already have a critical hit
+#       else if api_response shows suspicious redirects:
+#           increase risk_score by 20
+#           append "Suspicious URL Redirect" to analysis_report["findings"]
+#
+#   # 3. Determine Triage Action based on score thresholds
+#   if risk_score >= 50:
+#       set analysis_report["action"] = "Quarantine Email & Alert SOC"
+#       set analysis_report["severity"] = "High"
+#   else if risk_score >= 20:
+#       set analysis_report["action"] = "Flag for Manual Analyst Review"
+#       set analysis_report["severity"] = "Medium"
+#   else:
+#       set analysis_report["action"] = "Close as False Positive"
+#       set analysis_report["severity"] = "Low"
+#
+#   return analysis_report
+# end function

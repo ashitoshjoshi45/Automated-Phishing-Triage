@@ -1,14 +1,34 @@
-# added on 14-08-2026
+# added on 18-08-2026
 
+import email
+from email import policy
+import re
 #function parse_phishing_email(eml_file_path)
+def parse_phishing_email(eml_file_path):
 #   initialize artifacts dictionary to store sender, subject, and urls
+    artifacts = {
+        "sender": None,
+        "subject" : None,
+        "urls": []
+    }
   # open the eml_file_path and parse the email content
   # extract the "From" and "Subject" fields
-  
+    try:
+        with open(eml_file_path, 'r') as f:
+            msg = email.message_from_file(f, policy=policy.default)
+            artifacts["sender"] = msg.get("From")
+            artifacts["subject"] = msg.get("Subject")
   # check if the email contains multiple parts
+        if msg.is_multipart():
+            body = ""
+            for part in msg.walk():
+                content_type = part.get_content_type()
+                if content_type in ["text/plain", "text/html"]:
+                    body += part.get_payload(decode=True).decode(part.get_content_charset() or 'utf-8', errors='replace')
   # outer loop: iterate through each part of the email
   #    inner loop / condition: if the part is text/plain or text/html
   #       append the content to our main body string
+
   
   # use regular expressions to find all URLs in the extracted body
   # return the dictionary of extracted artifacts

@@ -26,12 +26,19 @@ def parse_phishing_email(eml_file_path):
                 if content_type in ["text/plain", "text/html"]:
                     body += part.get_payload(decode=True).decode(part.get_content_charset() or 'utf-8', errors='replace')
   # outer loop: iterate through each part of the email
-  #    inner loop / condition: if the part is text/plain or text/html
-  #       append the content to our main body string
+            for part in msg.walk():
+        #    inner loop / condition: if the part is text/plain or text/html
+                if part.get_content_type() in ["text/plain", "text/html"]:
+#       append the content to our main body string
+                    charset = part.get_content_charset() or 'utf-8'
+                    body += part.get_payload(decode=True).decode(charset, errors='replace')
 
+    # use regular expressions to find all URLs in the extracted body
+    url_pattern = re.compile(r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+[^\s"\'<>]*')
+    artifacts["urls"] = list(set(re.findall(url_pattern, body)))
   
-  # use regular expressions to find all URLs in the extracted body
   # return the dictionary of extracted artifacts
+    return artifacts
 # end function
 
 # added on 16-08-2026

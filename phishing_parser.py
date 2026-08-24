@@ -25,8 +25,10 @@ def parse_phishing_email(eml_file_path):
                 content_type = part.get_content_type()
                 if content_type in ["text/plain", "text/html"]:
                     body += part.get_payload(decode=True).decode(part.get_content_charset() or 'utf-8', errors='replace')
+  # Added om 24-08-2026
   # outer loop: iterate through each part of the email
             for part in msg.walk():
+       
         #    inner loop / condition: if the part is text/plain or text/html
                 if part.get_content_type() in ["text/plain", "text/html"]:
 #       append the content to our main body string

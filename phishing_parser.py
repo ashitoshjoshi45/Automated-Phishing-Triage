@@ -43,16 +43,25 @@ def parse_phishing_email(eml_file_path):
     return artifacts
 # end function
 
-# added on 16-08-2026
+# added on 26-08-2026
 
 # function triage_phishing_artifacts(artifacts)
+def triage_phishing_artifacts(artifacts):
 #   initialize risk_score to 0
+    risk_score = 0
 #   initialize analysis_report dictionary to store findings and final action
+    analysis_report = {
+        "findings" : [],
+        "risk_score" : 0
+    }
 #
 #   # 1. Analyze Sender Domain
+    sender = artifacts.get ("sender", "")
 #   extract domain from artifacts["sender"]
 #   query domain_reputation_api(domain) # e.g., check age, SPF/DKIM records, threat intel
 #   if domain is newly registered OR has known bad reputation:
+    if sender_domain:
+        
 #       increase risk_score by 30
 #       append "Suspicious Sender Domain" to analysis_report["findings"]
 #

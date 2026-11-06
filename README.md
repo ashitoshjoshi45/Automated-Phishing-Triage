@@ -2,7 +2,7 @@
 
 An automated security operations tool designed to ingest, analyze, and respond to reported phishing emails. This project simulates a Tier 1 SOC analyst workflow by extracting IOCs (Indicators of Compromise) and utilizing AI for threat scoring.
 
-## 🚀 Core Features
+### 🚀 Core Features
 * **Automated Ingestion:** Parses suspicious emails (.eml) or mailbox streams.
 * **IOC Extraction:** Automatically extracts URLs, domains, IP addresses, and file hashes.
 * **Threat Intelligence Enrichment:** Checks extracted IOCs against threat intelligence feeds (e.g., VirusTotal API).

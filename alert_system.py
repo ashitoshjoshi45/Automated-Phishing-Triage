@@ -3,6 +3,7 @@
 # DEFINE THRESHOLD constant
 
 # FUNCTION calculate_risk_score(artifact_type, threat_intel_score):
+calculate_risk_score
 #     base_weight = lookup artifact_type in RiskWeights
 #     total_score = base_weight * threat_intel_score
 #     RETURN total_score

@@ -22,7 +22,7 @@ This document outlines the development phases for the Automated Phishing Triage 
 [x] Develop basic cross-referencing logic to match .eml IOCs against active honeypot threats.
 [x] Upgrade the in-memory honeypot IOC set to a persistent local SQLite database.
 [x] Develop correlation_engine.py to cross-reference IPs, senders, and hashes across multiple .eml files.
-[ ] Generate a "Blast Radius" report identifying Patient Zero and the full scope of the internal phishing campaign.
+[x] Generate a "Blast Radius" report identifying Patient Zero and the full scope of the internal phishing campaign.
 
 ## 📍 Phase 5: SIEM Integration & IR Handoff
 [ ] Aggregate findings from the Parser, Enricher, and Correlation Engine.

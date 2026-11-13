@@ -8,7 +8,7 @@ An automated security operations tool designed to ingest, analyze, and respond t
 * **Threat Intelligence Enrichment:** Checks extracted IOCs against threat intelligence feeds (e.g., VirusTotal API).
 * **Automated Reporting:** Generates a summarized triage report with a malicious confidence score.
 
----
+----
 
 ## 🔍 Module 1: Automated EML Triage (`eml_parser.py`)
 
